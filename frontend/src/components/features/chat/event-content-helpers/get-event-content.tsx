@@ -1,6 +1,6 @@
 import { Trans } from "react-i18next";
 import { OpenHandsAction } from "#/types/core/actions";
-import { isOpenHandsAction, isOpenHandsObservation } from "#/types/core/guards";
+import { isOpenHandsAction, isOpenHandsObservation } from "@openhands/types";
 import { OpenHandsObservation } from "#/types/core/observations";
 import { MonoComponent } from "../mono-component";
 import { PathComponent } from "../path-component";

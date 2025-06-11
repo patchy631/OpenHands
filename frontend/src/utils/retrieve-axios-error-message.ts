@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import {
   isAxiosErrorWithErrorField,
   isAxiosErrorWithMessageField,
-} from "./type-guards";
+} from "@openhands/types";
 
 /**
  * Retrieve the error message from an Axios error

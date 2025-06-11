@@ -18,7 +18,7 @@ import { I18nKey } from "#/i18n/declaration";
 import { transformVSCodeUrl } from "#/utils/vscode-url-helper";
 import OpenHands from "#/api/open-hands";
 import { useWsClient } from "#/context/ws-client-provider";
-import { isSystemMessage } from "#/types/core/guards";
+import { isSystemMessage } from "@openhands/types";
 
 interface ConversationCardProps {
   onClick?: () => void;
