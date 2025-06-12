@@ -25,8 +25,10 @@ describe("Axios Error Type Guards", () => {
       data: { error: "test error" },
       status: 400,
       statusText: "Bad Request",
-      headers: {},
-      config: {},
+      headers: new AxiosError().response?.headers || {},
+      config: {
+        headers: new AxiosError().response?.headers || {},
+      },
     };
 
     expect(isAxiosErrorWithErrorField(error)).toBe(true);
@@ -38,8 +40,10 @@ describe("Axios Error Type Guards", () => {
       data: { message: "test message" },
       status: 400,
       statusText: "Bad Request",
-      headers: {},
-      config: {},
+      headers: new AxiosError().response?.headers || {},
+      config: {
+        headers: new AxiosError().response?.headers || {},
+      },
     };
 
     expect(isAxiosErrorWithMessageField(error)).toBe(true);
@@ -51,8 +55,10 @@ describe("Axios Error Type Guards", () => {
       data: { other: "field" },
       status: 400,
       statusText: "Bad Request",
-      headers: {},
-      config: {},
+      headers: new AxiosError().response?.headers || {},
+      config: {
+        headers: new AxiosError().response?.headers || {},
+      },
     };
 
     expect(isAxiosErrorWithErrorField(error)).toBe(false);
@@ -64,8 +70,10 @@ describe("Axios Error Type Guards", () => {
       data: { other: "field" },
       status: 400,
       statusText: "Bad Request",
-      headers: {},
-      config: {},
+      headers: new AxiosError().response?.headers || {},
+      config: {
+        headers: new AxiosError().response?.headers || {},
+      },
     };
 
     expect(isAxiosErrorWithMessageField(error)).toBe(false);
@@ -76,8 +84,11 @@ describe("OpenHands Event Type Guards", () => {
   it("should correctly identify OpenHandsAction", () => {
     const event = {
       action: "message",
-      source: "user",
+      source: "agent" as const,
       content: "test",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isOpenHandsAction(event)).toBe(true);
@@ -87,6 +98,13 @@ describe("OpenHands Event Type Guards", () => {
     const event = {
       observation: "error",
       error: "test error",
+      source: "agent" as const,
+      extras: {},
+      cause: "test cause",
+      content: "test content",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isOpenHandsObservation(event)).toBe(true);
@@ -95,8 +113,11 @@ describe("OpenHands Event Type Guards", () => {
   it("should correctly identify UserMessage", () => {
     const event = {
       action: "message",
-      source: "user",
+      source: "user" as const,
       content: "test",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isUserMessage(event)).toBe(true);
@@ -105,8 +126,11 @@ describe("OpenHands Event Type Guards", () => {
   it("should correctly identify AssistantMessage", () => {
     const event = {
       action: "message",
-      source: "agent",
+      source: "agent" as const,
       content: "test",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isAssistantMessage(event)).toBe(true);
@@ -116,6 +140,13 @@ describe("OpenHands Event Type Guards", () => {
     const event = {
       observation: "error",
       error: "test error",
+      source: "agent" as const,
+      extras: {},
+      cause: "test cause",
+      content: "test content",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isErrorObservation(event)).toBe(true);
@@ -124,8 +155,13 @@ describe("OpenHands Event Type Guards", () => {
   it("should correctly identify CommandAction", () => {
     const event = {
       action: "run",
-      source: "agent",
-      command: "test",
+      source: "agent" as const,
+      args: {
+        command: "test",
+      },
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isCommandAction(event)).toBe(true);
@@ -135,6 +171,13 @@ describe("OpenHands Event Type Guards", () => {
     const event = {
       observation: "agent_state_changed",
       state: "test",
+      source: "agent" as const,
+      extras: {},
+      cause: "test cause",
+      content: "test content",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isAgentStateChangeObservation(event)).toBe(true);
@@ -144,6 +187,13 @@ describe("OpenHands Event Type Guards", () => {
     const event = {
       observation: "run",
       output: "test",
+      source: "agent" as const,
+      extras: {},
+      cause: "test cause",
+      content: "test content",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isCommandObservation(event)).toBe(true);
@@ -152,8 +202,11 @@ describe("OpenHands Event Type Guards", () => {
   it("should correctly identify FinishAction", () => {
     const event = {
       action: "finish",
-      source: "agent",
+      source: "agent" as const,
       content: "test",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isFinishAction(event)).toBe(true);
@@ -162,8 +215,11 @@ describe("OpenHands Event Type Guards", () => {
   it("should correctly identify SystemMessage", () => {
     const event = {
       action: "system",
-      source: "agent",
+      source: "agent" as const,
       content: "test",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isSystemMessage(event)).toBe(true);
@@ -172,6 +228,13 @@ describe("OpenHands Event Type Guards", () => {
   it("should correctly identify RejectObservation", () => {
     const event = {
       observation: "user_rejected",
+      source: "agent" as const,
+      extras: {},
+      cause: "test cause",
+      content: "test content",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isRejectObservation(event)).toBe(true);
@@ -181,6 +244,13 @@ describe("OpenHands Event Type Guards", () => {
     const event = {
       observation: "mcp",
       data: "test",
+      source: "agent" as const,
+      extras: {},
+      cause: "test cause",
+      content: "test content",
+      id: "test-id",
+      message: "test message",
+      timestamp: new Date().toISOString(),
     };
 
     expect(isMcpObservation(event)).toBe(true);
@@ -188,9 +258,10 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify StatusUpdate", () => {
     const event = {
-      status_update: true,
-      type: "test",
+      status_update: true as const,
+      type: "error" as const,
       id: "123",
+      message: "test message",
     };
 
     expect(isStatusUpdate(event)).toBe(true);
