@@ -25,9 +25,9 @@ describe("Axios Error Type Guards", () => {
       data: { error: "test error" },
       status: 400,
       statusText: "Bad Request",
-      headers: new AxiosError().response?.headers || {},
+      headers: {},
       config: {
-        headers: new AxiosError().response?.headers || {},
+        headers: {},
       },
     };
 
@@ -40,9 +40,9 @@ describe("Axios Error Type Guards", () => {
       data: { message: "test message" },
       status: 400,
       statusText: "Bad Request",
-      headers: new AxiosError().response?.headers || {},
+      headers: {},
       config: {
-        headers: new AxiosError().response?.headers || {},
+        headers: {},
       },
     };
 
@@ -55,9 +55,9 @@ describe("Axios Error Type Guards", () => {
       data: { other: "field" },
       status: 400,
       statusText: "Bad Request",
-      headers: new AxiosError().response?.headers || {},
+      headers: {},
       config: {
-        headers: new AxiosError().response?.headers || {},
+        headers: {},
       },
     };
 
@@ -70,9 +70,9 @@ describe("Axios Error Type Guards", () => {
       data: { other: "field" },
       status: 400,
       statusText: "Bad Request",
-      headers: new AxiosError().response?.headers || {},
+      headers: {},
       config: {
-        headers: new AxiosError().response?.headers || {},
+        headers: {},
       },
     };
 
@@ -83,10 +83,10 @@ describe("Axios Error Type Guards", () => {
 describe("OpenHands Event Type Guards", () => {
   it("should correctly identify OpenHandsAction", () => {
     const event = {
-      action: "message",
+      action: "message" as const,
       source: "agent" as const,
-      content: "test",
-      id: "test-id",
+      args: {},
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -96,13 +96,12 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify OpenHandsObservation", () => {
     const event = {
-      observation: "error",
-      error: "test error",
+      observation: "error" as const,
       source: "agent" as const,
       extras: {},
-      cause: "test cause",
+      cause: 1,
       content: "test content",
-      id: "test-id",
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -112,10 +111,10 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify UserMessage", () => {
     const event = {
-      action: "message",
+      action: "message" as const,
       source: "user" as const,
-      content: "test",
-      id: "test-id",
+      args: {},
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -125,10 +124,10 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify AssistantMessage", () => {
     const event = {
-      action: "message",
+      action: "message" as const,
       source: "agent" as const,
-      content: "test",
-      id: "test-id",
+      args: {},
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -138,13 +137,12 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify ErrorObservation", () => {
     const event = {
-      observation: "error",
-      error: "test error",
+      observation: "error" as const,
       source: "agent" as const,
       extras: {},
-      cause: "test cause",
+      cause: 1,
       content: "test content",
-      id: "test-id",
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -154,12 +152,12 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify CommandAction", () => {
     const event = {
-      action: "run",
+      action: "run" as const,
       source: "agent" as const,
       args: {
         command: "test",
       },
-      id: "test-id",
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -169,13 +167,12 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify AgentStateChangeObservation", () => {
     const event = {
-      observation: "agent_state_changed",
-      state: "test",
+      observation: "agent_state_changed" as const,
       source: "agent" as const,
       extras: {},
-      cause: "test cause",
+      cause: 1,
       content: "test content",
-      id: "test-id",
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -185,13 +182,12 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify CommandObservation", () => {
     const event = {
-      observation: "run",
-      output: "test",
+      observation: "run" as const,
       source: "agent" as const,
       extras: {},
-      cause: "test cause",
+      cause: 1,
       content: "test content",
-      id: "test-id",
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -201,10 +197,10 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify FinishAction", () => {
     const event = {
-      action: "finish",
+      action: "finish" as const,
       source: "agent" as const,
-      content: "test",
-      id: "test-id",
+      args: {},
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -214,10 +210,10 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify SystemMessage", () => {
     const event = {
-      action: "system",
+      action: "system" as const,
       source: "agent" as const,
-      content: "test",
-      id: "test-id",
+      args: {},
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -227,12 +223,12 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify RejectObservation", () => {
     const event = {
-      observation: "user_rejected",
+      observation: "user_rejected" as const,
       source: "agent" as const,
       extras: {},
-      cause: "test cause",
+      cause: 1,
       content: "test content",
-      id: "test-id",
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -242,13 +238,12 @@ describe("OpenHands Event Type Guards", () => {
 
   it("should correctly identify MCPObservation", () => {
     const event = {
-      observation: "mcp",
-      data: "test",
+      observation: "mcp" as const,
       source: "agent" as const,
       extras: {},
-      cause: "test cause",
+      cause: 1,
       content: "test content",
-      id: "test-id",
+      id: 1,
       message: "test message",
       timestamp: new Date().toISOString(),
     };
@@ -260,7 +255,7 @@ describe("OpenHands Event Type Guards", () => {
     const event = {
       status_update: true as const,
       type: "error" as const,
-      id: "123",
+      id: 1,
       message: "test message",
     };
 
