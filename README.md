@@ -28,7 +28,7 @@ OpenHands agents can do anything a human developer can: modify code, run command
 call APIs, and yes—even copy code snippets from StackOverflow.
 
 <div align="center">
-  <img src="./assets/open-devin.gif" alt="OpenHands Demo" width="100%">
+  <img src="./assets/open-devin-new.gif" alt="OpenHands Demo" width="100%">
 </div>
 
 
